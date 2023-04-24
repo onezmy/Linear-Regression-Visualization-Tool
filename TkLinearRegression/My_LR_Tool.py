@@ -37,8 +37,7 @@ X = []
 Y = []
 data = []
 df = {}
-input_Max_iter = 1000
-input_Tol = 1e-5
+input_Max_iter = 50
 
 """
 define functions for UI
@@ -106,9 +105,9 @@ def points_plot():
             Y_num.append(float(Y[i]))
         except:
             continue
-    fig = plt.figure(figsize = (9, 9))
+    fig = plt.figure(figsize = (9, 9), dpi=50)
     ax = fig.add_subplot()
-    ax.scatter(X_num,Y_num,c="#7E95F2", s = 1)
+    ax.scatter(X_num,Y_num,c="#7E95F2", marker = '.')
     ax.set_title("Linear Regression")
     ax.set_xlabel("X")
     ax.set_ylabel("Y")
@@ -117,8 +116,8 @@ def points_plot():
 
     canvas1 = FigureCanvasTkAgg(fig,master=window)
     canvas1.draw()
-    canvas1.get_tk_widget().pack()
-    canvas1.place(x=475,y=20,width=500)
+    canvas1.get_tk_widget().pack(padx=10, pady=20)
+
     
     
     
@@ -161,6 +160,7 @@ def regression_plot():
     """
     fig = plt.figure(figsize = (9, 9),dpi=50)
     ax=fig.add_subplot()
+    fig2 = plt.figure(figsize=(9, 9),dpi=50)
     X_num, Y_num = [], []
     n = len(X)
     for i in range(n):
@@ -181,6 +181,7 @@ def regression_plot():
     LR = float(input_LR.get()) 
     epochs = int(input_Max_iter.get())  
     ims = []
+    ims_loss = []
     X_num = np.array(X_num)
     Y_num = np.array(Y_num)
     for i in range(epochs): 
@@ -191,14 +192,15 @@ def regression_plot():
         c = c - LR * D_c  # Update c
         m_list.append(m)
         c_list.append(c)
-        ax.scatter(X_num,Y_num, c = '#4FABE8', marker = '.')
+        ax.scatter(X_num,Y_num, c = '#7E95F2', marker = '.')
         im, = ax.plot(x,lr(m,c),'r')
         function_exp = "y = "+str(m)+" * x + "+str(c)
         title= ax.text(0.5,1.05,"iteration = " + str(i) + "\n "+function_exp, 
                         size=plt.rcParams["axes.titlesize"],
                         ha="center", transform=ax.transAxes, )
         ims.append([im,title])
-        if i%100 == 0:
+        
+        if i%10 == 0:
             print('Processing iteration', i)
     print('Saving to gif')
     ani = animation.ArtistAnimation(fig, ims, interval=50, blit=False)
