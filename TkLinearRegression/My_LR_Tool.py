@@ -112,7 +112,7 @@ def points_plot():
             Y_num.append(float(Y[i]))
         except:
             continue
-    fig = plt.figure(figsize = (9, 9), dpi=50)
+    fig = plt.figure(figsize = (9, 10), dpi=50)
     ax = fig.add_subplot()
     ax.scatter(X_num,Y_num,c="#7E95F2", marker = '.')
     ax.set_title("Linear Regression")
@@ -254,7 +254,7 @@ def load_data():
              list_Y.insert(END,row[1])
              Y.append(str(row[1]))
         show_all()
-        
+        points_plot()
     else:
       messagebox.showerror("Error","No data found to load")
 
@@ -352,7 +352,7 @@ Start = ttk.Button(window,text="Clear",command= clear_data, bootstyle=ttk.consta
 Start.place(x=200,y=420,width=130)
 
 # values label
-Max_iter = ttk.Label(window,text="X-Values  |   Y-values",anchor="w", background = '#fff', font = font2)
+Max_iter = ttk.Label(window,text="X-Values  |   Y-Values",anchor="w", background = '#fff', font = font2)
 Max_iter.place(x=415,y=50,width=330)
 
 # show all X
