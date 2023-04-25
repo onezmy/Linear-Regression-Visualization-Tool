@@ -330,7 +330,7 @@ Add = ttk.Button(window,text="Add",command=add,bootstyle = ttk.constants.PRIMARY
 Add.place(x=50,y=155,width=130)
 
 # 'Remove' button 
-Remove = ttk.Button(window,text="Remove",command=remove,bootstyle = ttk.constants.DANGER)
+Remove = ttk.Button(window,text="Remove",command=remove,bootstyle = ttk.constants.WARNING)
 Remove.place(x=200,y=155,width=130)
 
 # 'Load Data' button 
