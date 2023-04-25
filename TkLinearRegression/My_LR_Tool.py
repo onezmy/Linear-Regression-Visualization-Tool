@@ -241,8 +241,6 @@ def regression_plot():
         
 def load_data():
     input_file_name = input_data_file.get()
-    if input_file_name[-3:] != 'csv':
-        input_file_name += '.csv'
     if os.path.exists(input_file_name):
         data = pd.read_csv(input_file_name)
         values = data.values
